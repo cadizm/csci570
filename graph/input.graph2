@@ -1,0 +1,15 @@
+# Input format: First line should be an integer N representing the number of
+# nodes in the Graph. Each node will be represented by an integer in the range
+# 0 to N-1. So, for example, if the first line is 4, the graph will contain
+# 4 nodes and they will be represented by integers 0, 1, 2, and 3.
+# All subsequent lines should contain tuples of the form (n, m, w) or {n, m, w} 
+# delimited by commas. n and m should be in the range 0 to N-1. Edges enclosed
+# within parentheses will be treated as directed and those enclosed within braces
+# will be undirected: (n, m) is equivalent to (m, n) and means that there exists
+# an edge from node n to m/m to n. w represents the weight of the (directed or
+# undirected) edge and should be an integer.
+# G = (V, E)
+# V = { u | 0 =< u < N }
+# E = { (m, n) | m is in N and n is in N }
+3
+(0, 1, 2), (0, 2, 7), (1, 2, 3)

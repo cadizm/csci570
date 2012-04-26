@@ -1,0 +1,9 @@
+# File Format: the first non-comment line should be an integer representing
+# the input size. The next i lines should be the preference list for the ith
+# man, where i is in the range 0 to n-1. The next i lines should follow the
+# same format for women.
+2
+0, 1
+0, 1
+1, 0
+0, 1

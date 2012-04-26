@@ -1,0 +1,50 @@
+
+Divide and Conquer minimum ratio algorithm:
+
+# Assume length of list L is a power of 2
+Minimum-Ratio(L)
+    n = length of L
+    If n == 2
+        Return L[0]/L[1]
+    End If
+
+    mid = n/2
+    Q = L[0...mid]        # Divide
+    R = L[mid...n]
+
+    m = L[mid-1]/L[mid]
+    q = Minimum-Ratio(Q)  # Conquer/solve recursively
+    r = Minimum-Ratio(R)
+
+    Return min(m, q, r)   # Merge
+
+Complexity Analysis:
+
+There are two subproblems of size n/2. It takes O(n) time for the divide
+step and O(1) time for the combine step. So using the Master Theorem:
+
+    T(n) = 2 T(n/2) + O(n) + O(1)
+
+After substituting:
+    f(n) = n
+    n^(log a base b) = n^(log 2 base 2) = n
+    f(n) is Big-Theta(n^(log a base b)), so T(n) is Big-Theta of:
+        n^(log 2 base 2) log n = Big-Theta(n log n)
+
+-------------------------------------------------------------------------------
+
+Recurrence for algorithm described:
+
+T(n) = 8 T(n/2) + O(n^2) + O(n log n)
+
+Using Master Theorem:
+
+f(n) = O(n^2 + n log n) = O(n^2)
+n^(log a base b) = n^(log 8 base 2) = n^3
+
+f(n) = O(n^(log a base b)), so
+T(n) = Big-Theta(n^(log a base b)) = Big-Theta(n^3)
+
+Because the algorithm is dominated by the n^3 term from n^(log a base b),
+improving the number of problems and the size of the subproblem at each step
+will improve the overall complexity of the algorithm.
