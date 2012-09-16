@@ -75,21 +75,20 @@ def read_input():
     # G[i] holds the adjacency list for node i
     G = [[] for i in range(int(n))]
     W = {}
-    uedges = re.findall('\{(\s*\d+,\s*\d+,\s*\w+\s*)\}', source)
-    for e in uedges:                    
-        [u, v, weight] = e.split(',')
+    edges = re.findall('(\(.*?\))+', source)
+    for e in edges:                    
+        node = e.strip('()').split(',')
+        if len(node) == 3:
+            [u, v, weight] = node
+        else:
+            node.append(-1)
+            [u, v, weight] = node
         # For a given edge {u, v}, u should be on v's adjacency list,
         # and v should be on u's
         G[int(u)].append(int(v))
         G[int(v)].append(int(u))
-        W[(u, v)] = weight
-        W[(v, u)] = weight
-    dedges = re.findall('\((\s*\d+,\s*\d+,\s*\w+\s*)\)', source)
-    for e in dedges:
-        [u, v, weight] = e.split(',')
-        # For a given edge (u, v), v should only be on u's adjacency list
-        G[int(u)].append(int(v))
-        W[(u, v)] = weight
+        W[(u, v)] = int(weight)
+        W[(v, u)] = int(weight)
     return (G, W)
 
 def run():
@@ -98,10 +97,10 @@ def run():
     for i in range(len(G)):
         (L, T) = bfs(i, G)
         print "Graph: %s" % (G)
-        print "BFS Layers: %s" % (L)
-        print "BFS Tree: %s" % (T)
+        print "BFS(%d) Layers: %s" % (i, L)
+        print "BFS(%d) Tree: %s" % (i, T)
         T = dfs(i, G)
-        print "DFS Tree: %s" % (T)
+        print "DFS(%d) Tree: %s" % (i, T)
 
 if __name__ == '__main__':
     run()
